@@ -1,0 +1,11 @@
+git config --global user.email "yiuwong16@gmail.com"  
+git config --global user.name "Yiu" 
+
+git clone https://github.com/ChenYang-Lin/CS492_UserAuth.git
+git remote add origin https://github.com/ChenYang-Lin/CS492_UserAuth.git
+
+git add .
+git commit -m "your comments"
+git push origin main
+
+git pull origin main
