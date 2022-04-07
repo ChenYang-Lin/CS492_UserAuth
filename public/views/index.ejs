@@ -7,6 +7,9 @@
     <title>Document</title>
 </head>
 <body>
-    
+    Hello, 
+    <% if ((typeof(user) !== "undefined")) { %>
+        <%= user?.username %>
+    <% } %>
 </body>
 </html>

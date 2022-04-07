@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Signup</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles/auth.css" />
+
+</head>
+<body>
+    <form action="/signup" method="POST" class="auth-form bg-white border rounded shadow p-5">
+        <h1 class="text-center">Signup</h1>
+        <!-- Error messages -->
+        <div id="error-msg" class="my-4">
+            <% if ((typeof(errors) !== "undefined")) { %>
+                <% for (let error of errors) { %>
+                    <p class="bg-danger text-white fw-bold px-2 my-2"><%= error %></p>
+                <% } %>
+            <% } %>
+        </div>
+
+        <!-- Form Inputs -->
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" name="username"  required>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="email" name="email"  required>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password"  name="password" required>
+        </div>
+        <div class="mb-3">
+            <label for="password2" class="form-label">Password Repeat</label>
+            <input type="password" class="form-control" id="password2"  name="password2" required>
+        </div>
+        
+        <!-- Term -->
+        <!-- <div class="form-check d-flex justify-content-center m-3">
+        <input class="form-check-input me-2" type="checkbox" value=""id="form2Example3cg" />
+        <label class="form-check-label" for="form2Example3g">
+            I agree all statements in <a href="#!" class="fw-bold text-decoration-underline">Terms of service</a>
+        </label>
+        </div> -->
+
+        <!-- Register Button -->
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary"><h3>Register</h3></button>   
+        </div>
+
+        <p class="text-center m-3">Have already an account? <a href="/login" class="fw-bold text-decoration-underline">Login</a></p>
+
+    </form>
+
+    
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>

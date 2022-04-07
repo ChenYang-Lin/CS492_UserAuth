@@ -1,0 +1,15 @@
+
+
+.auth-form {
+    min-width: 500px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@media (max-width: 500px) {
+  .auth-form {
+    min-width: 90%;
+  }
+}
