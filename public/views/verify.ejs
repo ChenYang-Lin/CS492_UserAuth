@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Verify</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles/auth.css" />
+
+</head>
+<body>
+    <form action="/verify" method="POST" class="auth-form bg-white border rounded shadow p-5">
+        <h3 class="text-center">A verification code has been sent to your email.</h3>
+        <!-- Error messages -->
+        <div id="error-msg" class="my-4">
+            <% if ((typeof(errors) !== "undefined")) { %>
+                <% for (let error of errors) { %>
+                    <p class="bg-danger text-white fw-bold px-2 my-2"><%= error %></p>
+                <% } %>
+            <% } %>
+        </div>
+        
+        <br>
+        <br>
+
+        <!-- Form Inputs -->
+        <div class="mb-3">
+            <label for="code" class="form-label">Code:</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="code" name="code" required>
+                <input type="hidden" class="form-control" id="userID" name="userID" value="<%= userID %>" >
+                <button id="send-again"  class="btn btn-primary" type="button">Send again</button>
+            </div>
+        </div>
+
+        <br>
+        <br>
+
+        <!-- Verify Button -->
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary"><h3>Verify</h3></button>   
+        </div>
+
+        <p class="text-center m-3">Use another account? <a href="/login" class="fw-bold text-decoration-underline">Login</a></p>
+
+    </form>
+
+    
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <!-- JQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        // Ajax for re-send code - resend and timer
+        $("#send-again").click(() => {
+            let resendInterval;
+            let resendTimer;
+            $("#send-again").prop("disabled", true);
+            $.post("/resend", {
+                userID: $("#userID").val(),
+            }, (data, status) => {
+                resendTimer = data.resendTimer;
+                resendInterval = setInterval(() => {
+                    resendTimer -= 1000;
+                    $("#send-again").html("Send again " + "(" + Math.floor(resendTimer/1000) + ")");
+                    if (resendTimer <= 0) {
+                        $("#send-again").prop("disabled", false);
+                        $("#send-again").html("Send again")
+                        clearInterval(resendInterval);
+                    }
+                }, 1000)
+            })
+        })
+    </script>
+</body>
+</html>
