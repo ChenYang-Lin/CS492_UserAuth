@@ -59,7 +59,7 @@ const generateCodeAndEmail = async (userID, expirationPeriod) => {
     );
 
     // send plain-text code to user via email
-    // sendOneTimePasswordCode(user.email, plainOTP, expirationPeriod)
+    sendOneTimePasswordCode(user.email, plainOTP, expirationPeriod)
 }
 
 module.exports = {
