@@ -4,7 +4,7 @@ const app = express();
 const path = require("path");
 
 const mongoose = require("mongoose");
-const User = require("./models/User.js")
+const User = require("/models/User.js")
 const OTP = require("./models/OTP.js")
 const { hashStringWithSalt, sendOneTimePasswordCode, generateCodeAndEmail } = require("./utils.js")
 
