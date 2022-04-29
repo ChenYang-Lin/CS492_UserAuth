@@ -142,7 +142,7 @@ app.post("/login", async (req, res) => {
     }
 })
 
-// Username and password match, check if verification code is correct.
+// check if verification code is correct.
 app.post("/verify", async (req, res) => {
     const { code } = req.body;
     const plainOTP = code;
