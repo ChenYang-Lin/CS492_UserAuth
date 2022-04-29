@@ -15,11 +15,17 @@ const userSchema = new Schema({
         type: String,
         required: true,
     },
-    verified: {
-        type: Boolean,
-        default: false,
-    }
-}, { timestamps: true });
+    otp: {
+        type: String,
+        default: 0000,
+        required: true,
+    },
+    expiresAt: {
+        type: Date,
+        default: Date.now,
+        required: true,
+    },
+}, { timestamps: false });
 
 const User = mongoose.model("User", userSchema);
 
